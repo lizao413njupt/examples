@@ -1,0 +1,108 @@
+<!-- 该文件实现了简单的翻页功能 -->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    #carousel {
+      width: 400px;
+      height: 400px;
+    }
+
+    #carousel li {
+      width: 200px;
+      line-height: 200px;
+      position: absolute;
+      text-align: center;
+      text-shadow: 0 0 5px #000;
+      color: #ffffff;
+      font-size: 50px;
+      opacity: 0;
+      transition: opacity 0.4s;
+      box-shadow: 0 0 20px #000000;
+      border-radius: 10px;
+      border: 3px solid gainsboro;
+    }
+
+    #carousel li:nth-child(1) {
+      background-color: red;
+    }
+
+    #carousel li:nth-child(2) {
+      background-color: blue;
+    }
+
+    #carousel li:nth-child(3) {
+      background-color: green;
+    }
+
+    #carousel li:nth-child(4) {
+      background-color: orange;
+    }
+
+    #carousel li.active {
+      opacity: 1;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+  </style>
+
+</head>
+
+<body>
+  <ul id="carousel">
+    <li class="active">1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+  </ul>
+
+  <button class="prev">Previous</button>
+  <button class="next">Next</button>
+
+  <script>
+    var carousel = document.querySelector('#carousel');
+    var items = carousel.querySelectorAll('li');
+    var nextBtn = document.querySelector('.next');
+    var prevBtn = document.querySelector('.prev');
+
+    var index = 0;
+    nextBtn.addEventListener("click", function() {
+      
+      items[index].className = ''
+      index++;
+      if(index === 4){
+        index = 0;
+        items[0].className = 'active'
+      }
+      items[index].className = 'active';
+
+    })
+
+    prevBtn.addEventListener("click", function() {
+      
+      items[index].className = ''
+      index--;
+      if(index === -1){
+        index = 3;
+        items[3].className = 'active'
+      }
+      items[index].className = 'active';
+
+    })
+
+
+    
+
+  </script>
+
+
+
+</body>
+
+</html>
