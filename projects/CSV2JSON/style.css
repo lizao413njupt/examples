@@ -1,0 +1,71 @@
+    .container {
+      flex-direction: column;
+      height: 200px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-top: 50px;
+    }
+
+    .transfer {
+      gap: 10px;
+    }
+
+    .transfer input {
+      width: 300px;
+      height: 40px;
+      font-size: 16px;
+      border: 1px solid black;
+      border-radius: 5px;
+    }
+
+    button {
+      width: 70px;
+      margin-top: 10px;
+      box-shadow: 0 1px 4px black;
+      background-color: lightgray;
+      border-radius: 5px;
+      /* 过渡动画 */
+      transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.3s;
+      border: 1px solid black;
+    }
+
+    /* 鼠标悬停效果 */
+    button:hover {
+      background-color: gray;
+      color: white;
+      cursor: pointer;
+    }
+
+    .radios label {
+      font-size: smaller;
+    }
+
+    /* 为了提升用户体验，用输入错误时给出红色边框提示,并且抖动来替换原本的alert弹窗 */
+    /* 定义抖动动画 */
+    @keyframes shake {
+
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+
+      25% {
+        transform: translateX(-8px);
+      }
+
+      50% {
+        transform: translateX(8px);
+      }
+
+      75% {
+        transform: translateX(-8px);
+      }
+    }
+
+    /* 抖动类：持续 0.4 秒 */
+    .shake-error {
+      border: 2px solid #ff4d4f !important;
+      animation: shake 0.4s ease-in-out;
+    }

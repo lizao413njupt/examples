@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .container {
+        display: flex;
+        width: 100%;
+        height: 200px;
+        background-color: aquamarine;
+        justify-content: center;
+        align-items: center;
+        border-radius: 75px;
+        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+        border: 2px solid rgb(161, 157, 157);
+      }
+      .box {
+        width: 50px;
+        height: 50px;
+        background-color: cadetblue;
+        border-radius: 12.5px;
+        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+      }
+      .sliders {
+        margin: 10px;
+        display: flex;
+        gap: 10px;
+        flex-direction: column;
+      }
+      datalist {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        writing-mode: vertical-rl;
+        width: 100%;
+      }
+      datalist option {
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="box"></div>
+    </div>
+    <div class="sliders">
+      <!-- 利用滑动条调整边框圆角大小： -->
+      <label for="slider-left-top">Left-top</label>
+      <input
+        type="range"
+        id="slider-left-top"
+        min="0"
+        max="50"
+        value="25"
+        list="tickmarks"
+      />
+      <label for="slider-right-top">Right-top</label>
+      <input
+        type="range"
+        id="slider-right-top"
+        min="0"
+        max="50"
+        value="25"
+        list="tickmarks"
+      />
+      <label for="slider-right-bottom">Right-bottom</label>
+      <input
+        type="range"
+        id="slider-right-bottom"
+        min="0"
+        max="50"
+        value="25"
+        list="tickmarks"
+      />
+      <label for="slider-left-bottom">Left-bottom</label>
+      <input
+        type="range"
+        id="slider-left-bottom"
+        min="0"
+        max="50"
+        value="25"
+        list="tickmarks"
+      />
+      <!-- 标记点 -->
+      <datalist id="tickmarks">
+        <option value="0" label="0"></option>
+        <option value="10" label="10"></option>
+        <option value="20" label="20"></option>
+        <option value="30" label="30"></option>
+        <option value="40" label="40"></option>
+        <option value="50" label="50"></option>
+      </datalist>
+    </div>
+
+    <button type="button" onclick="resetSliders()">reset</button>
+    <button type="button" id="copy" onclick="copy()">copy</button>
+    <label for="radius-text">结果</label>
+    <input type="text" id="radius-text" value="25px" readonly />
+
+    <script>
+      var borderRadius = document.querySelector(".box");
+      var sliderLeftTop = document.querySelector("#slider-left-top");
+      var sliderRightTop = document.querySelector("#slider-right-top");
+      var sliderRightBottom = document.querySelector("#slider-right-bottom");
+      var sliderLeftBottom = document.querySelector("#slider-left-bottom");
+      var radiusText = document.querySelector("#radius-text");
+
+      function copy() {
+        // Select the text field
+        radiusText.select();
+        radiusText.setSelectionRange(0, 99999); // For mobile devices
+
+        // Copy the text inside the text field
+        navigator.clipboard.writeText(radiusText.value);
+
+        // Alert the copied text
+        alert("Copied the text: " + radiusText.value);
+      }
+
+      function resetSliders() {
+        sliderLeftTop.value = 25;
+        sliderRightTop.value = 25;
+        sliderLeftBottom.value = 25;
+        sliderRightBottom.value = 25;
+        updateBorderRadius();
+      }
+
+      function updateBorderRadius() {
+        borderRadius.style.borderRadius =
+          sliderLeftTop.value +
+          "px " +
+          sliderRightTop.value +
+          "px " +
+          sliderRightBottom.value +
+          "px " +
+          sliderLeftBottom.value +
+          "px";
+        radiusText.value = borderRadius.style.borderRadius;
+      }
+
+      sliderLeftTop.addEventListener("input", updateBorderRadius);
+      sliderRightTop.addEventListener("input", updateBorderRadius);
+      sliderLeftBottom.addEventListener("input", updateBorderRadius);
+      sliderRightBottom.addEventListener("input", updateBorderRadius);
+    </script>
+  </body>
+</html>
