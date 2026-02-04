@@ -9,7 +9,7 @@ function App() {
       <p>Title</p>
       <input type="text" onChange={handleChange}></input>
       <p className="input">{inputText}</p>
-    
+
     </>
   )
 
